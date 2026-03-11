@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --color-surface: #1a1a2e;
+  --color-surface-hover: #22223a;
+  --color-border: #2a2a44;
+  --color-accent: #6c63ff;
+  --color-accent-hover: #5a52e0;
+  --color-accent-glow: rgba(108, 99, 255, 0.35);
+  --color-danger: #ff6b6b;
+}
+
+/* Dark mode is default, light mode when class applied */
+:root {
+  color-scheme: dark;
+}
+
+.light {
+  color-scheme: light;
+}
+
+/* Base body styling */
+body {
+  font-family: var(--font-sans);
+}
+
+/* Custom checkbox */
+.checkmark {
+  @apply w-5.5 h-5.5 rounded-md border-2 border-border flex items-center justify-center shrink-0 transition-all duration-200;
+}
+
+.checkmark::after {
+  content: "";
+  @apply block w-1.5 h-2.5 border-transparent rotate-45 -translate-y-px;
+  border-style: solid;
+  border-width: 0 2.5px 2.5px 0;
+  transition: border-color 0.2s;
+}
+
+input:checked ~ .checkmark {
+  @apply bg-accent border-accent;
+}
+
+input:checked ~ .checkmark::after {
+  border-color: #fff;
+}
+
+/* Slide-in animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.25s ease-out;
+}
+
+/* Spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 0.7s linear infinite;
+}
+
+/* Priority badge colors */
+.priority-high {
+  @apply bg-red-500/15 text-red-400 border-red-500/30;
+}
+.priority-medium {
+  @apply bg-amber-500/15 text-amber-400 border-amber-500/30;
+}
+.priority-low {
+  @apply bg-emerald-500/15 text-emerald-400 border-emerald-500/30;
+}
+
+/* Drag handle */
+.drag-handle {
+  @apply cursor-grab active:cursor-grabbing text-gray-500 hover:text-gray-300 transition-colors;
+}
+
+/* --- Light mode overrides --- */
+.light body,
+.light {
+  --color-surface: #ffffff;
+  --color-surface-hover: #f5f5f8;
+  --color-border: #e2e2ea;
+}
+
+.light .checkmark {
+  border-color: #d1d1df;
+}
